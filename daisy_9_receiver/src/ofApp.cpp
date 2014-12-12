@@ -4,23 +4,13 @@
 void ofApp::setup(){
     
     ofEnableAlphaBlending();
-    //daisyImage.loadImage("images/flowerk.png");
     daisyImage.loadImage("images/center80.png");
-    //petalImage.loadImage("images/petal0c.png");
-     petalImage.loadImage("images/plasticC.png");
-    //petalImageHovered.loadImage("images/petal1cLovesMeNot.png");
-    //petalImageHovered2.loadImage("images/petal0cLovesMe.png");
-    //petalImageHovered.loadImage("images/loves_black2.png");
-        petalImageHovered.loadImage("images/plasticCloves.png");
-    //petalImageHovered2.loadImage("images/not_black2.png");
+    petalImage.loadImage("images/plasticC.png");
+    petalImageHovered.loadImage("images/plasticCloves.png");
     petalImageHovered2.loadImage("images/plasticCnot.png");
-
-    //petalImageHovered.loadI`mage("images/petal01.png");
     followerImage.loadImage("images/daisy_mj_product.png");
     bEmit = false;
-    
     BGimage.loadImage("images/blue_sky.jpg");
-    
     bee.loadImage("images/bee_small.png");
 
     //--osc
