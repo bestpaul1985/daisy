@@ -5,7 +5,7 @@ void ofApp::setup(){
     
     ofEnableAlphaBlending();
     daisyImage.loadImage("images/center80.png");
-    petalImage.loadImage("images/plasticC.png");
+    petalImage.loadImage("images/plasticW.png");
     petalImageHovered.loadImage("images/plasticCloves.png");
     petalImageHovered2.loadImage("images/plasticCnot.png");
     followerImage.loadImage("images/daisy_mj_product.png");
@@ -19,8 +19,8 @@ void ofApp::setup(){
         mouseX[i] = -10;
         mouseY[i] = -10;
     }
-    petal_Image_number_1 = 4;//added by Paul 10/21 -
-    petal_Image_number_2 = 12;//added by Paul 10/21
+    petal_Image_number_1 = 6;//added by Paul 10/21 -
+    petal_Image_number_2 = 2;//added by Paul 10/21
     
     //--ARD
     ard.connect("/dev/tty.usbmodem1411", 57600);
@@ -37,10 +37,24 @@ void ofApp::setup(){
     bButton = true;
     
     //--sound
-    soundPlayer.loadSound("synth.wav");
+    soundPlayer.loadSound("final_daisy_sound.wav");
     soundPlayer.setVolume(0.75f);
     soundPlayer.setMultiPlay(false);
     soundPlayer.setLoop(false);
+    
+    //sound for background
+    Spring.loadSound("spring_forest.wav");
+    Spring.setVolume(0.30f);
+    Spring.setMultiPlay(false);
+    Spring.setLoop(true);
+    Spring.play();
+    
+    //sound for harp
+    blow.loadSound("blow.wav");
+    blow.setVolume(1.00f);
+    blow.setMultiPlay(false);
+    blow.setLoop(false);
+    
     
 }
 
@@ -52,6 +66,10 @@ void ofApp::update(){
 
     //--osc
     oscReceive();
+    
+    //--audio background
+    ofSoundUpdate();
+
     
     
     //--daisy
@@ -134,7 +152,7 @@ void ofApp::update(){
         buttonTimer = ofGetElapsedTimeMillis();
     }
     
-    //sound----------------
+//    //sound----------------
     updateSound();
     
 }
@@ -144,6 +162,10 @@ void ofApp::draw(){
     
     ofSetColor(255);
     BGimage.draw(0,0, ofGetWidth(), ofGetHeight());
+    
+   
+    
+    
     
     for (int i=0; i<myFlwSmall.size(); i++) {
         myFlwSmall[i].draw();
@@ -308,6 +330,8 @@ void ofApp::updateArduino(){
         cleaner();
         float velX = -4.5;
         
+        blow.play();
+        
         for (int i=0; i< petal_Image_number_2; i++) {
             followerBig tempFlw;
             myFlws.push_back(tempFlw);
@@ -371,6 +395,7 @@ void ofApp::updateSound(){
             }
         }
     }
+    
     
 }
 

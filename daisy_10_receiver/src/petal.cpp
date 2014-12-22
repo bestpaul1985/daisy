@@ -29,7 +29,8 @@ void petal::setup(ofImage &IMAGE, ofImage &ImageHovered,float x, float y, float 
 void petal::update(){
     
     vel = vel + frc;
-	pos = pos + vel;
+    pos = pos + vel;
+    
     
     if (bFly) {
         angle +=  rotateSpeed * vel.length() * diff;
@@ -37,7 +38,7 @@ void petal::update(){
             ofApp * app = (ofApp *)ofGetAppPtr();
             ofPoint mouse(app->mouseX[i],app->mouseY[i]);
             if (!isNotTouch) {
-           if (mouse.distance(pos)<40) {
+           if (mouse.distance(pos)<60) {//40
                     bSelected = true;
                     bSoundPlay = true;
                     break;
@@ -46,20 +47,21 @@ void petal::update(){
                 }
             }
         }
-       
     }
     
     if (bSelected && bIsLovesMe) {
-        if (scale<2) {
-            scale += 0.01;
+        if (scale<4.5) {//2
+            scale +=.04;//0.01
         }
     }
     
     if (!bSelected &&bIsLovesMe) {
         if (scale>1) {
-            scale -= 0.1;
+            scale -= 0.010;
         }
     }
+    
+    
     
 }
 
@@ -80,7 +82,7 @@ void petal::draw(){
 
     }
     ofPopMatrix();
-
+    
     
 }
 

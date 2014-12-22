@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "daisy_8_receiver.app"
+               BuildableName = "daisy_10_receiver.app"
                BlueprintName = "daisy_10_receiver"
                ReferencedContainer = "container:daisy_10_receiver.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "daisy_8_receiver.app"
+            BuildableName = "daisy_10_receiver.app"
             BlueprintName = "daisy_10_receiver"
             ReferencedContainer = "container:daisy_10_receiver.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "daisy_8_receiver.app"
+            BuildableName = "daisy_10_receiver.app"
             BlueprintName = "daisy_10_receiver"
             ReferencedContainer = "container:daisy_10_receiver.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "daisy_8_receiver.app"
+            BuildableName = "daisy_10_receiver.app"
             BlueprintName = "daisy_10_receiver"
             ReferencedContainer = "container:daisy_10_receiver.xcodeproj">
          </BuildableReference>

@@ -70,7 +70,7 @@ void followerBig::update(){
         mouse.x = app->mouseX[i];
         mouse.y = app->mouseY[i];
         float dis = mouse.distance(pos);
-        if(bPetalFixed && timer-preTimer > 3000){
+        if(bPetalFixed && timer-preTimer > 5000){//timer amount for beginning prohibitive interaction
             //if (dis<136 ) {
                      if (dis<136 ) {
                 //for (int i=0; i<myPetals.size()-5; i++) {//affects the explosion

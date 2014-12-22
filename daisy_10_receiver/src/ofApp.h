@@ -28,6 +28,8 @@ class ofApp : public ofBaseApp{
         void setupArduino(const int & version);
         void updateArduino();
         void updateSound();
+    
+    
 		
     ofImage             daisyImage;
     ofImage             petalImage;
@@ -65,4 +67,6 @@ class ofApp : public ofBaseApp{
     
     //sound
     ofSoundPlayer  soundPlayer;
+    ofSoundPlayer  Spring;
+    ofSoundPlayer blow;
 };
