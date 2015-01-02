@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		828316D319D21ACF00543FA6 /* petal2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 828316D219D21ACF00543FA6 /* petal2.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -76,8 +75,6 @@
 
 /* Begin PBXFileReference section */
 		4F1C3D631A3A84BB0084C55F /* daisy_10_receiverDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daisy_10_receiverDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		828316D119D21AC200543FA6 /* petal2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = petal2.h; sourceTree = "<group>"; };
-		828316D219D21ACF00543FA6 /* petal2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = petal2.cpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -244,8 +241,6 @@
 				F96B12AE19B90DD40035C25C /* followerBig.h */,
 				F96B12AF19B90DD40035C25C /* petal.cpp */,
 				F96B12B019B90DD40035C25C /* petal.h */,
-				828316D119D21AC200543FA6 /* petal2.h */,
-				828316D219D21ACF00543FA6 /* petal2.cpp */,
 				F92C4E7A19C4A6E900BC3643 /* followerSmall.cpp */,
 				F92C4E7B19C4A6E900BC3643 /* followerSmall.h */,
 			);
@@ -453,7 +448,6 @@
 				F96FBC8B19F217F6008AD307 /* ofxOscSender.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				F96FBC8E19F217F6008AD307 /* UdpSocket.cpp in Sources */,
-				828316D319D21ACF00543FA6 /* petal2.cpp in Sources */,
 				F96FBC8D19F217F6008AD307 /* NetworkingUtils.cpp in Sources */,
 				F96FBC8A19F217F6008AD307 /* ofxOscReceiver.cpp in Sources */,
 				F96FBC9119F217F6008AD307 /* OscReceivedElements.cpp in Sources */,

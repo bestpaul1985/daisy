@@ -60,6 +60,7 @@ class ofApp : public ofBaseApp{
     
     //---
     bool        bClean;
+    bool        bBee;
     float       cleanerTimer;
     bool        bLovesMe_Selected;
     int         buttonTimer;

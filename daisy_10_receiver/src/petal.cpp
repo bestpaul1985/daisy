@@ -11,6 +11,8 @@ petal::petal(){
     bIsLovesMe = false;
     bSoundPlay = false;
     scale = 1;
+    orgScale = 1;
+    scalePct = 0;
 }
 
 //--------------------------------------------------------------
@@ -49,17 +51,7 @@ void petal::update(){
         }
     }
     
-    if (bSelected && bIsLovesMe) {
-        if (scale<4.5) {//2
-            scale +=.04;//0.01
-        }
-    }
-    
-    if (!bSelected &&bIsLovesMe) {
-        if (scale>1) {
-            scale -= 0.010;
-        }
-    }
+
     
     
     
@@ -165,11 +157,68 @@ void petal::addRepulsionForce(float x, float y, float radius, float scale){
     
 }
 
+//------------------------------------------------------------
+void petal::addAttractionForce(float x, float y, float radius, float scale){
+    
+    // --------- (1) make a vector of where this position is:
+    
+    ofVec2f posOfForce;
+    posOfForce.set(x,y);
+    
+ 	// --------- (2) calculate the difference & length
+    
+    ofVec2f diff	= pos - posOfForce;
+    float length	= diff.length();
+    
+ 	// --------- (3) check close enough
+    
+    bool bAmCloseEnough = true;
+    if (radius > 0){
+        if (length > radius){
+            bAmCloseEnough = false;
+        }
+    }
+    
+ 	// --------- (4) if so, update force
+    
+    if (bAmCloseEnough == true){
+        float pct = 1 - (length / radius); // stronger on the inside
+        diff.normalize();
+        frc.x = frc.x - diff.x * scale * pct;
+        frc.y = frc.y - diff.y * scale * pct;
+    }
+}
+
 //--------------------------------------------------------------
 void petal::resetAngle(float Angle){
     
     angle =Angle*RAD_TO_DEG;
 }
+
+
+//--------------------------------------------------------------
+void petal::scaleUpdate()   {
+    
+    float endScale, speed;
+    endScale = 4.5;
+    speed = 0.01;
+    
+    if (bSelected && bIsLovesMe) {
+        scalePct+=speed;
+        if(scalePct>1)  {
+            scalePct =1;
+        }
+            float temPct;
+            temPct = powf(scalePct, 0.7);
+            scale = (1-temPct)*orgScale + temPct*endScale;
+        }
+    
+    
+
+    
+}
+
+
 
 
 

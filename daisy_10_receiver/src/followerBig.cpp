@@ -23,7 +23,7 @@ followerBig::followerBig(){
     hit_Repulsion_Scale = 6.0;//how fast petal moves away once touched -- added by Paul 10/21
     petal_Repulsion_Scale = 0.5;//how fast petal moves in velocity -- added by Paul 10/21
 
-    
+    bClean = false;
 }
 
 //--------------------------------------------------------------
@@ -112,6 +112,22 @@ void followerBig::update(){
                                           myPetals[i].repulsionRadius,
                                           myPetals[i].repulsionScale);
             
+            if (bClean) {
+                myPetals[i].addAttractionForce(-100, ofGetHeight()/2, 3000, 0.5);
+            }else{
+                myPetals[i].angle += myPetals[i].rotateSpeed * myPetals[i].vel.length() * myPetals[i].diff;
+                for (int i=0; i<4; i++) {
+                    ofApp * app = (ofApp *)ofGetAppPtr();
+                    ofPoint mouse(app->mouseX[i],app->mouseY[i]);
+                    if (!myPetals[i].isNotTouch) {
+                        if (mouse.distance(pos)<60) {//40
+                            myPetals[i].bSelected = true;
+                            myPetals[i].bSoundPlay = true;
+                        }
+                    }
+                }
+            }
+            
             if(myPetals[i].isNotTouch){
                 
                 ofApp * app = (ofApp *)ofGetAppPtr();
@@ -150,6 +166,7 @@ void followerBig::draw(){
     
     for (int i=0; i<myPetals.size(); i++) {
         myPetals[i].draw();
+        
     }
     
     ofPushMatrix();

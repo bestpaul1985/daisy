@@ -35,6 +35,7 @@ void ofApp::setup(){
     bLovesMe_Selected = false;
     buttonTimer = ofGetElapsedTimeMillis() - 3000;
     bButton = true;
+    bBee = true;
     
     //--sound
     soundPlayer.loadSound("final_daisy_sound.wav");
@@ -73,6 +74,8 @@ void ofApp::update(){
     
     
     //--daisy
+    
+    if (!bLovesMe_Selected && bBee) {
     for (int i=0; i<myFlws.size(); i++) {
         myFlws[i].resetForce();
     }
@@ -93,7 +96,14 @@ void ofApp::update(){
         //clean
         ofRectangle window;
         window.set(-100, -100, ofGetWidth()+100, ofGetHeight()+100);
-        if (!window.inside(myFlws[i].pos)&& bClean) {
+        
+        for (int j=0; j<myFlws[i].myPetals.size(); j++) {
+            if (!window.inside(myFlws[i].myPetals[j].pos)&& bClean) {
+                myFlws[i].myPetals.erase(myFlws[i].myPetals.begin()+j);
+            }
+        }
+        
+        if (myFlws[i].myPetals.size() == 0) {
             myFlws.erase(myFlws.begin()+i);
         }
     }
@@ -116,29 +126,40 @@ void ofApp::update(){
             myFlwSmall.erase(myFlwSmall.begin()+i);
         }
     }
+    }
     
     
     // bee touch loves me
-    bLovesMe_Selected = false;
+   
     for (int i=0; i<myFlws.size(); i++) {
         for (int j=0; j<myFlws[i].myPetals.size(); j++) {
-            if(  myFlws[i].myPetals[j].bSelected && myFlws[i].myPetals[j].bIsLovesMe){
+            if(  myFlws[i].myPetals[j].bSelected && myFlws[i].myPetals[j].bIsLovesMe && !bClean){
                 bLovesMe_Selected =true;
+                break;
             }
+        }
+    }
+    
+    //scale change
+    for (int i=0; i<myFlws.size(); i++)  {
+        for (int j=0; j<myFlws[i].myPetals.size(); j++) {
+            myFlws[i].myPetals[j].scaleUpdate();
         }
     }
     
     
     if (bLovesMe_Selected) {
-        cleanerTimer++;
-    }else{
-        if (cleanerTimer>0) {
-            cleanerTimer -=0.5;
+        for (int i=0; i<myFlws.size(); i++) {
+            for (int j=0; j<myFlws[i].myPetals.size(); j++) {
+                if(myFlws[i].myPetals[j].bSelected){
+                    if (myFlws[i].myPetals[j].scalePct == 1) {
+                        bClean =true;
+                        bLovesMe_Selected = false;
+                    }
+                    break;
+                }
+            }
         }
-    }
-    
-    if (cleanerTimer> 100) {
-        bClean =true;
     }
     
     
@@ -152,7 +173,7 @@ void ofApp::update(){
         buttonTimer = ofGetElapsedTimeMillis();
     }
     
-//    //sound----------------
+//  sound----------------
     updateSound();
     
 }
@@ -163,18 +184,46 @@ void ofApp::draw(){
     ofSetColor(255);
     BGimage.draw(0,0, ofGetWidth(), ofGetHeight());
     
-   
-    
-    
     
     for (int i=0; i<myFlwSmall.size(); i++) {
         myFlwSmall[i].draw();
     }
+    //--------------------------------------------------------------
+
+
+    //---daisy part
+
     
+    //---patels which are not loves me
     for (int i=0; i<myFlws.size(); i++) {
-        myFlws[i].draw();
+        for (int j=0; j<myFlws[i].myPetals.size(); j++) {
+            
+            ofPushMatrix();
+            ofTranslate(myFlws[i].pos);
+            ofRotateZ(myFlws[i].angle*RAD_TO_DEG);
+            ofSetColor(255);
+            daisyImage.draw(-daisyImage.getWidth()/2, -daisyImage.getHeight()/2);
+            ofPopMatrix();
+            
+            if (!myFlws[i].myPetals[j].bSelected) {
+                myFlws[i].myPetals[j].draw();
+            }
+        }
+        
     }
     
+    
+    //---patels which are loves me
+    for (int i=0; i<myFlws.size(); i++) {
+        for (int j=0; j<myFlws[i].myPetals.size(); j++) {
+            if (myFlws[i].myPetals[j].bSelected) {
+                myFlws[i].myPetals[j].draw();
+            }
+        }
+    }
+
+
+
     //--osc
     string buf;
 	buf = "FPS: "+ ofToString(ofGetFrameRate())+"\nListening for osc messages on port" + ofToString(PORT);
@@ -327,6 +376,7 @@ void ofApp::updateArduino(){
     
     if(buttonState == true && ardButtonPressed == false){
         bButton = false;
+        bLovesMe_Selected = false;
         cleaner();
         float velX = -4.5;
         

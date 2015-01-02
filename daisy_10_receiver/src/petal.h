@@ -29,8 +29,10 @@ public:
     void addDampingForce();
     void setInitialCondition(float px, float py, float vx, float vy);
     void addRepulsionForce(float x, float y, float radius, float scale);
+    void addAttractionForce (float x, float y, float radius, float scale);
     
     void resetAngle(float Angle);
+    void scaleUpdate();
     
     
     ofImage *image;
@@ -47,6 +49,9 @@ public:
     bool isNotTouch;
     bool bIsLovesMe;
     bool bSoundPlay;
+    
     float scale;
+    float orgScale;
+    float scalePct;//percentage
     
 };
