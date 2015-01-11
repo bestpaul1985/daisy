@@ -62,6 +62,8 @@ void followerBig::setInitialCondition(ofImage &Daisy, ofImage &Petal, ofImage &I
 //--------------------------------------------------------------
 void followerBig::update(){
     
+    
+    
     timer = ofGetElapsedTimeMillis();
     
     for(int i=0; i<4; i++){
@@ -126,6 +128,7 @@ void followerBig::update(){
                             if (mouse.distance(pos)<60) {//40
                                 myPetals[i].bSelected = true;
                                 myPetals[i].bSoundPlay = true;
+                               
                             }
                         }
                     }
@@ -177,6 +180,8 @@ void followerBig::draw(){
     ofSetColor(255);
     daisyImage->draw(-daisyImage->getWidth()/2, -daisyImage->getHeight()/2);
     ofPopMatrix();
+    
+    
     
     
 }

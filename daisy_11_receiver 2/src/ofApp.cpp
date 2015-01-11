@@ -26,7 +26,7 @@ void ofApp::setup(){
         mouseX[i] = -100;
         mouseY[i] = -100;
     }
-    petal_Image_number_1 = 1;//added by Paul 10/21 -
+    petal_Image_number_1 = 2;//added by Paul 10/21 -
     petal_Image_number_2 = 12;//added by Paul 10/21
     
     //--ARD
@@ -78,6 +78,7 @@ void ofApp::update(){
     ofSoundUpdate();
     
     instructions.draw(350,120);
+    
   
     
     //--daisy
@@ -112,6 +113,7 @@ void ofApp::update(){
             
             if (myFlws[i].myPetals.size() == 0) {
                 myFlws.erase(myFlws.begin()+i);
+                
             }
         }
         
@@ -141,11 +143,10 @@ void ofApp::update(){
     for (int i=0; i<myFlws.size(); i++) {
         for (int j=0; j<myFlws[i].myPetals.size(); j++) {
             if(  myFlws[i].myPetals[j].bSelected && myFlws[i].myPetals[j].bIsLovesMe && !bClean){
+                
                 bLovesMe_Selected =true;
                  ard.sendDigital(13,ARD_HIGH);
-                     end.draw(350,120);
-                
-                
+                 end.draw(350,120);
                  break;
             }
             
@@ -267,9 +268,9 @@ void ofApp::draw(){
     
     // we changed to one bee
     
-    for (int i=0; i<4; i++) {
-        bee.draw(mouseX[i], mouseY[i]);
-    }
+//    for (int i=0; i<4; i++) {
+//        bee.draw(mouseX[i], mouseY[i]);
+//    }
     
 }
 
@@ -405,6 +406,7 @@ void ofApp::setupArduino(const int & version) {
 //--------------------------------------------------------------
 void ofApp::updateArduino(){
     
+    
 	// update the arduino, get any data or messages.
 	ard.update();
    
@@ -496,7 +498,7 @@ void ofApp::updateSound(){
                 if (!soundPlayer.getIsPlaying()) {
                     soundPlayer.play();
                     ard.sendDigital(13,ARD_HIGH);
-                     //end.draw(350,120);
+                    
                     
                 }else{
                     myFlws[i].myPetals[j].bSoundPlay = false;

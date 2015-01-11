@@ -58,5 +58,7 @@ public:
     int timer;
     int preTimer;
     
+    ofImage end;
+    
     
 };

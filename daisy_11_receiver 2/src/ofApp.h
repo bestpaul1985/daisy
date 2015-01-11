@@ -33,6 +33,7 @@ class ofApp : public ofBaseApp{
     
     ofImage             instructions;
     ofImage             end;
+    ofImage             loadimage;
 		
     ofImage             daisyImage;
     ofImage             petalImage;
