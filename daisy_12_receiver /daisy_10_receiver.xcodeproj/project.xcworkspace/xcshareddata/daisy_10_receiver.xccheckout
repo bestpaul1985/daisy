@@ -10,29 +10,29 @@
 	<string>daisy_10_receiver</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>74F26E13-362D-4F4D-A4A0-158560D39C4E</key>
+		<key>DDD49531994F807408D415B5CD6098518ED6CB4D</key>
 		<string>https://github.com/bestpaul1985/daisy.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>daisy_10_receiver/daisy_10_receiver.xcodeproj/project.xcworkspace</string>
+	<string>daisy_12_receiver /daisy_10_receiver.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>74F26E13-362D-4F4D-A4A0-158560D39C4E</key>
+		<key>DDD49531994F807408D415B5CD6098518ED6CB4D</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/bestpaul1985/daisy.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>74F26E13-362D-4F4D-A4A0-158560D39C4E</string>
+	<string>DDD49531994F807408D415B5CD6098518ED6CB4D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>74F26E13-362D-4F4D-A4A0-158560D39C4E</string>
+			<string>DDD49531994F807408D415B5CD6098518ED6CB4D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>daisy</string>
 		</dict>

@@ -42,16 +42,18 @@ void followerBig::setInitialCondition(ofImage &Daisy, ofImage &Petal, ofImage &I
         myPetals.push_back(temPetal);
         float petalX = pos.x + (radius+petalImage->getWidth()/2)*cos(ang);
         float petalY = pos.y + (radius+petalImage->getWidth()/2)*sin(ang);
-        bool isNotTouch = true;
-        if (i%petalRepelled == 0) {
-            isNotTouch = false;
+        
+        if (i%PETALS_NUMBER==0 ) {
+            if (isLoveme) {
+                myPetals.back().setup(Petal, ImageHovered, petalX,petalY,ang, false, true, false);
+            }else{
+                myPetals.back().setup(Petal, ImageHovered, petalX,petalY,ang, false, false, true);
+            }
+        }else{
+            myPetals.back().setup(Petal, ImageHovered, petalX,petalY,ang, true, false, false);
         }
         
-        if (isLoveme) {
-            myPetals.back().setup(Petal, ImageHovered, petalX,petalY,ang, isNotTouch, true);
-        }else{
-            myPetals.back().setup(Petal, ImageHovered, petalX,petalY,ang, isNotTouch, false);
-        }
+   
     }
     
     timer = ofGetElapsedTimeMillis();
@@ -70,26 +72,18 @@ void followerBig::update(){
         mouse.x = app->mouseX[i];
         mouse.y = app->mouseY[i];
         float dis = mouse.distance(pos);
-        
-        if(bPetalFixed && timer-preTimer > 10000){
-            //timer amount for beginning prohibitive interaction
-            //if (dis<136 ) {
-                     if (dis<136 ) {
-            
-                //for (int i=0; i<myPetals.size()-5; i++) {//affects the explosion
-                        for (int i=0; i<myPetals.size()-2; i++) {
-                    ofPoint offset = ofPoint(ofRandom(-30,30),ofRandom(-30,30));//has to do with spread of daisy -- was -50,50 here default
-                    myPetals[i].repulsionPos = pos + offset;
-                    myPetals[i].repulsionRadius = myPetals[i].repulsionPos.distance(myPetals[i].pos)*ofRandom(1.1,1.2);
-                    myPetals[i].repulsionScale = ofRandom (hit_Repulsion_Scale/10, hit_Repulsion_Scale);
-                    myPetals[i].rotateSpeed = ofRandom(10,16);
-//                    myPetals[i].rotateSpeed = ofRandom(5,8);
-                    myPetals[i].gravity.set(0, 0.002);
-                    myPetals[i].bFly = true;
-                }
-                vel *= 0.2;
-                bPetalFixed = false;
+        if(bPetalFixed && timer-preTimer > 1000 && dis<136){
+            for (int i=0; i<myPetals.size()-2; i++) {
+                ofPoint offset = ofPoint(ofRandom(-30,30),ofRandom(-30,30));//has to do with spread of daisy -- was -50,50 here default
+                myPetals[i].repulsionPos = pos + offset;
+                myPetals[i].repulsionRadius = myPetals[i].repulsionPos.distance(myPetals[i].pos)*ofRandom(1.1,1.2);
+                myPetals[i].repulsionScale = ofRandom (hit_Repulsion_Scale/10, hit_Repulsion_Scale);
+                myPetals[i].rotateSpeed = ofRandom(10,16);
+                myPetals[i].gravity.set(0, 0.002);
+                myPetals[i].bFly = true;
             }
+            vel *= 0.2;
+            bPetalFixed = false;
         }
     }
     
@@ -106,55 +100,56 @@ void followerBig::update(){
             float y = pos.y + (radius+petalImage->getWidth()/2)*sin(ang);
             myPetals[i].pos.set(x,y);
             myPetals[i].resetAngle(ang);
-        }else{
+        }
+        
+        else{
 
             myPetals[i].resetForce();
-
             myPetals[i].addRepulsionForce(myPetals[i].repulsionPos.x,
                                           myPetals[i].repulsionPos.y,
                                           myPetals[i].repulsionRadius,
                                           myPetals[i].repulsionScale);
             
-                       
             if (bClean) {
-                //myPetals[i].addAttractionForce(-100, ofGetHeight()/2, 3000, 0.5);
                  myPetals[i].addAttractionForce(-100, ofGetHeight()/2, 3000, 0.1);
-            }else{
-                    myPetals[i].angle +=  myPetals[i].rotateSpeed * myPetals[i].vel.length() * myPetals[i].diff;
-                    for (int i=0; i<4; i++) {
-                        ofApp * app = (ofApp *)ofGetAppPtr();
-                        ofPoint mouse(app->mouseX[i],app->mouseY[i]);
-                        if (!myPetals[i].isNotTouch) {
-                            if (mouse.distance(pos)<60) {//40
-                                myPetals[i].bSelected = true;
-                                myPetals[i].bSoundPlay = true;
-                            }
+            }
+            else{
+                myPetals[i].angle += myPetals[i].rotateSpeed * myPetals[i].vel.length() * myPetals[i].diff;
+                for (int i=0; i<4; i++) {
+                    ofApp * app = (ofApp *)ofGetAppPtr();
+                    ofPoint mouse(app->mouseX[i],app->mouseY[i]);
+                    if (myPetals[i].bIsLovesMe || myPetals[i].bIsNotLovesMe) {
+                        if (mouse.distance(myPetals[i].pos)<40) {//40
+                            myPetals[i].bSelected = true;
+                            myPetals[i].bSoundPlay = true;
                         }
+                        cout<<mouse.distance(pos)<<endl;
                     }
                 }
             
-            if(myPetals[i].isNotTouch){
-                
-                ofApp * app = (ofApp *)ofGetAppPtr();
-                myPetals[i].addRepulsionForce(app->mouseX[0],
-                                                  app->mouseY[0],
+                if(myPetals[i].bIsNotBoth){
+                    
+                    ofApp * app = (ofApp *)ofGetAppPtr();
+                    myPetals[i].addRepulsionForce(app->mouseX[0],
+                                                      app->mouseY[0],
+                                                      90,
+                                                      petal_Repulsion_Scale);//added by Paul 10/21 this changes out speed for the repulsion
+                    
+                    myPetals[i].addRepulsionForce(app->mouseX[1],
+                                                  app->mouseY[1],
                                                   90,
-                                                  petal_Repulsion_Scale);//added by Paul 10/21 this changes out speed for the repulsion
-                
-                myPetals[i].addRepulsionForce(app->mouseX[1],
-                                              app->mouseY[1],
-                                              90,
-                                              petal_Repulsion_Scale);
-                myPetals[i].addRepulsionForce(app->mouseX[2],
-                                              app->mouseY[2],
-                                              90,
-                                              petal_Repulsion_Scale);
+                                                  petal_Repulsion_Scale);
+                    myPetals[i].addRepulsionForce(app->mouseX[2],
+                                                  app->mouseY[2],
+                                                  90,
+                                                  petal_Repulsion_Scale);
 
-                myPetals[i].addRepulsionForce(app->mouseX[3],
-                                              app->mouseY[3],
-                                              90,
-                                              petal_Repulsion_Scale);
-                
+                    myPetals[i].addRepulsionForce(app->mouseX[3],
+                                                  app->mouseY[3],
+                                                  90,
+                                                  petal_Repulsion_Scale);
+                    
+                    }
             }
             myPetals[i].addForce(myPetals[i].gravity.x, myPetals[i].gravity.y);
             myPetals[i].addDampingForce();

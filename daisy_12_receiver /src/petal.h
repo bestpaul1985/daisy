@@ -13,7 +13,7 @@ public:
     
     petal();
     
-    void setup(ofImage &IMAGE,ofImage &ImageHovered, float x, float y, float Angle, bool NotTouch, bool isLovesMe);
+    void setup(ofImage &IMAGE,ofImage &ImageHovered, float x, float y, float Angle, bool isNotBoth, bool isLovesMe, bool isNotLovesMe);
     void update();
     void draw();
     
@@ -45,7 +45,9 @@ public:
     float diff;
     bool bFly;
     bool bSelected;
-    bool isNotTouch;
+    bool bIsNotBoth;
+    bool bIsNotLovesMe;
+
     bool bIsLovesMe;
     bool bSoundPlay;
     

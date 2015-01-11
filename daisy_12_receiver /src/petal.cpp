@@ -16,15 +16,15 @@ petal::petal(){
 }
 
 //--------------------------------------------------------------
-void petal::setup(ofImage &IMAGE, ofImage &ImageHovered,float x, float y, float Angle, bool NotTouch, bool isLovesMe){
+void petal::setup(ofImage &IMAGE, ofImage &ImageHovered,float x, float y, float Angle, bool isNotBoth, bool isLovesMe, bool isNotLovesMe){
     
     image = &IMAGE;
     imageHovered = &ImageHovered;
     setInitialCondition(x, y, 0, 0);
     angle =  Angle*RAD_TO_DEG;
-    isNotTouch = NotTouch;
+    bIsNotBoth = isNotBoth;
     bIsLovesMe = isLovesMe;
-    
+    bIsNotLovesMe = isNotLovesMe;
 }
 
 //--------------------------------------------------------------

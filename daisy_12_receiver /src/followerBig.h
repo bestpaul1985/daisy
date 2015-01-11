@@ -37,6 +37,7 @@ public:
     void addDampingForce();
     void bounceOffWalls();
     
+    
     float damping;
     ofImage *daisyImage;
     ofImage *petalImage;

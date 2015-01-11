@@ -79,4 +79,6 @@ class ofApp : public ofBaseApp{
     //kasia - adding timer to end text
     int timer;
     int preTimer;
+    
+    bool FakeButton;
 };

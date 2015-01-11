@@ -69,6 +69,7 @@ void ofApp::setup(){
     blow.setMultiPlay(false);
     blow.setLoop(false);
     
+    FakeButton = false;
     
 }
 
@@ -151,11 +152,10 @@ void ofApp::update(){
     // bee touch loves me
     for (int i=0; i<myFlws.size(); i++) {
         for (int j=0; j<myFlws[i].myPetals.size(); j++) {
-            if(  myFlws[i].myPetals[j].bSelected && myFlws[i].myPetals[j].bIsLovesMe && !bClean){
+            if(myFlws[i].myPetals[j].bSelected && myFlws[i].myPetals[j].bIsLovesMe && !bClean){
                 bLovesMe_Selected =true;
-                 ard.sendDigital(13,ARD_HIGH);
-
-                 break;
+                ard.sendDigital(13,ARD_HIGH);
+                break;
             }
             
         }
@@ -254,7 +254,7 @@ void ofApp::draw(){
                 myFlws[i].myPetals[j].draw();
             }
             
-                   }
+        }
         
     }
 
@@ -321,6 +321,10 @@ void ofApp::keyPressed(int key){
     
     if (key == 'd') {
         bClean = !bClean;
+    }
+    
+    if (key == 'f') {
+        FakeButton = true;
     }
 }
 
@@ -451,9 +455,12 @@ void ofApp::updateArduino(){
     int buttonState = 0;
     if (bButton) {
         buttonState = ard.getDigital(2);
-        
     }
 
+    if (FakeButton) {
+        buttonState = true;
+        FakeButton = false;
+    }
     
     if(buttonState == true && ardButtonPressed == false){
         bButton = false;
