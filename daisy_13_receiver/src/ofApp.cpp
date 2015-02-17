@@ -45,7 +45,7 @@ void ofApp::setup(){
 
     //---clean
     bClean= false;
-    cleanerTimer = 0;
+    cleanerTimer = ofGetElapsedTimeMillis();
     bLovesMe_Selected = false;
     buttonTimer = ofGetElapsedTimeMillis() - 3000;
     bButton = true;
@@ -71,6 +71,7 @@ void ofApp::setup(){
     
     FakeButton = false;
     
+    cleanTime = 15000;
 }
 
 //--------------------------------------------------------------
@@ -201,13 +202,14 @@ void ofApp::update(){
     }
     
     
-    
+    //-----timer for clean----
+    if (ofGetElapsedTimeMillis() - cleanerTimer> cleanTime && !bClean) {
+        bClean = true;
+    }
     
     if (myFlws.size() == 0 && myFlwSmall.size() == 0) {
         bClean =false;
-        cleanerTimer = 0;
-        
-      
+        cleanerTimer = ofGetElapsedTimeMillis();
     }
     
     if (ofGetElapsedTimeMillis() -  buttonTimer >= 3000) {
@@ -283,7 +285,8 @@ void ofApp::draw(){
 
             ofEnableAlphaBlending();
             // ofSetColor(255,255,255, 127);
-            end.draw(190,120);}
+            end.draw(190,120);
+    }
 
     
     //--- kasia add draw instructions in the beginning and end on loop

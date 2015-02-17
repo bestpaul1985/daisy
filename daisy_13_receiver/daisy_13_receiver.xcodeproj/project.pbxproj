@@ -74,7 +74,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4F1C3D631A3A84BB0084C55F /* daisy_13_receiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = daisy_13_receiver.app; path = /Volumes/Work/of_v0.8.1_osx_release/apps/daisy/daisy_13_receiver/bin/daisy_13_receiver.app; sourceTree = "<absolute>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -135,6 +134,7 @@
 		F96FBC8419F217F6008AD307 /* OscReceivedElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
 		F96FBC8519F217F6008AD307 /* OscTypes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		F96FBC8619F217F6008AD307 /* OscTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
+		F9BBFD661A92F25F005B4C85 /* daisy_13_receiverDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daisy_13_receiverDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +227,7 @@
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				E45BE5980E8CC70C009D7055 /* frameworks */,
+				F9BBFD661A92F25F005B4C85 /* daisy_13_receiverDebug.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -371,7 +372,7 @@
 			);
 			name = daisy_13_receiver;
 			productName = myOFApp;
-			productReference = 4F1C3D631A3A84BB0084C55F /* daisy_13_receiver.app */;
+			productReference = F9BBFD661A92F25F005B4C85 /* daisy_13_receiverDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

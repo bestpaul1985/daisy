@@ -70,6 +70,7 @@ class ofApp : public ofBaseApp{
     bool        bLovesMe_Selected;
     int         buttonTimer;
     bool        bButton;
+    float       cleanTime;
     
     //sound
     ofSoundPlayer  soundPlayer;
